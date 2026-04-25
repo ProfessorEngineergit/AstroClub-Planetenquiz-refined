@@ -3,7 +3,9 @@
     "title": {"de": "Planeten-Quiz", "en": "Planet Quiz"},
     "submitButtonLabel": {"de": "Quiz auswerten", "en": "Evaluate Quiz"},
     "jokerButtonLabel": {"de": "50:50 Joker", "en": "50:50 Joker"},
-    "jokerUsedText": {"de": "Joker verwendet ✓", "en": "Joker used ✓"}
+    "jokerUsedText": {"de": "Joker verwendet ✓", "en": "Joker used ✓"},
+    "infoButtonLabel": {"de": "Info", "en": "Info"},
+    "infoCloseLabel": {"de": "Info schließen", "en": "Close info"}
   },
   "introText": {"de": "Willkommen zum Planeten-Quiz! Teste dein Wissen über unser Sonnensystem.", "en": "Welcome to the Planet Quiz! Test your knowledge about our solar system."},
   "questions": [
@@ -12,6 +14,7 @@
       "question": {"de": "Wie viele Planeten gibt es in unserem Sonnensystem?", "en": "How many planets are in our solar system?"},
       "answers": {"de": ["6", "8", "9", "10"], "en": ["6", "8", "9", "10"]},
       "correct": 1,
+      "info": {"de": "Mit „Planet\" sind hier offizielle Planeten nach der IAU-Definition (2006) gemeint — Zwergplaneten wie Pluto, Eris oder Ceres zählen nicht dazu.", "en": "\"Planet\" here refers to the official IAU definition (2006). Dwarf planets like Pluto, Eris or Ceres are not counted."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -19,6 +22,7 @@
       "question": {"de": "Welcher dieser Planeten hat die meisten Monde?", "en": "Which of these planets has the most moons?"},
       "answers": {"de": ["Merkur", "Erde", "Jupiter", "Uranus"], "en": ["Mercury", "Earth", "Jupiter", "Uranus"]},
       "correct": 2,
+      "info": {"de": "Gemeint ist die Anzahl bestätigter Monde nach aktuellem Stand der Forschung — die Zahl ändert sich, weil ständig neue kleine Monde entdeckt werden.", "en": "This refers to the number of currently confirmed moons — the count keeps changing as new small moons are discovered."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -26,6 +30,7 @@
       "question": {"de": "Welcher Planet hat die geringste Durchschnittsentfernung von uns?", "en": "Which planet has the smallest average distance from Earth?"},
       "answers": {"de": ["Merkur", "Mars", "Saturn", "Uranus"], "en": ["Mercury", "Mars", "Saturn", "Uranus"]},
       "correct": 0,
+      "info": {"de": "„Durchschnittsentfernung\" meint die über die gesamte Umlaufbahn gemittelte Distanz — nicht den minimalen Abstand. Überraschend: Merkur ist im Mittel näher als die Venus.", "en": "\"Average distance\" means the distance averaged over the entire orbit — not the closest approach. Surprisingly, Mercury is on average closer to Earth than Venus."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -33,6 +38,7 @@
       "question": {"de": "Seit wann ist Pluto kein Planet mehr?", "en": "Since when is Pluto no longer a planet?"},
       "answers": {"de": ["1989", "2001", "2006", "2014"], "en": ["1989", "2001", "2006", "2014"]},
       "correct": 2,
+      "info": {"de": "Gemeint ist der Beschluss der Internationalen Astronomischen Union (IAU): Pluto wurde zum „Zwergplaneten\" herabgestuft, weil er seine Bahn nicht freigeräumt hat.", "en": "This refers to the decision by the International Astronomical Union (IAU): Pluto was reclassified as a \"dwarf planet\" because it has not cleared its orbit."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -40,6 +46,7 @@
       "question": {"de": "Wie groß ist der Temperaturunterschied auf dem Merkur?", "en": "What is the temperature difference on Mercury?"},
       "answers": {"de": ["30°", "370°", "650°", "790°"], "en": ["30°", "370°", "650°", "790°"]},
       "correct": 2,
+      "info": {"de": "Gemeint ist die Differenz zwischen der Tag- und der Nachtseite des Merkurs. Da er fast keine Atmosphäre hat, kann die Wärme nicht gespeichert werden.", "en": "This is the difference between Mercury's dayside and nightside temperatures. With almost no atmosphere, Mercury cannot retain heat."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -47,6 +54,7 @@
       "question": {"de": "Ist ein Venus-Tag oder ein Venus-Jahr länger?", "en": "Is a Venus day or a Venus year longer?"},
       "answers": {"de": ["Venus-Tag", "Venus-Jahr", "Gleich lang", "Immer unterschiedlich"], "en": ["Venus day", "Venus year", "Same length", "Always different"]},
       "correct": 0,
+      "info": {"de": "Ein „Tag\" ist eine vollständige Drehung der Venus um ihre eigene Achse, ein „Jahr\" ein Umlauf um die Sonne. Die Venus dreht sich extrem langsam — und sogar rückwärts.", "en": "A \"day\" is one full rotation of Venus on its own axis; a \"year\" is one orbit around the Sun. Venus rotates extremely slowly — and backwards."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -54,6 +62,7 @@
       "question": {"de": "Wann entstand der Erdmond?", "en": "When did Earth's moon form?"},
       "answers": {"de": ["1899", "Vor 1 Millionen Jahren", "Vor 1 Milliarden Jahren", "Vor 4,5 Milliarden Jahren"], "en": ["1899", "1 million years ago", "1 billion years ago", "4.5 billion years ago"]},
       "correct": 3,
+      "info": {"de": "Die gängigste Theorie: Ein marsgroßer Protoplanet („Theia\") kollidierte mit der jungen Erde — aus den Trümmern formte sich der Mond.", "en": "The leading theory: a Mars-sized protoplanet (\"Theia\") collided with the young Earth, and the Moon formed from the debris."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -61,6 +70,7 @@
       "question": {"de": "Wie hoch ist der Olympus Mons?", "en": "How high is Olympus Mons?"},
       "answers": {"de": ["22km", "34km", "100km", "370km"], "en": ["22 km", "34 km", "100 km", "370 km"]},
       "correct": 0,
+      "info": {"de": "Olympus Mons ist ein erloschener Schildvulkan auf dem Mars und der höchste bekannte Berg im Sonnensystem — fast dreimal so hoch wie der Mount Everest.", "en": "Olympus Mons is an extinct shield volcano on Mars and the tallest known mountain in the solar system — nearly three times the height of Mount Everest."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -68,6 +78,7 @@
       "question": {"de": "Wie oft passt die Erde in den größten Planeten, den Jupiter?", "en": "How many times does Earth fit into the largest planet, Jupiter?"},
       "answers": {"de": ["13 Mal", "130 Mal", "1300 Mal", "13000 Mal"], "en": ["13 times", "130 times", "1300 times", "13000 times"]},
       "correct": 2,
+      "info": {"de": "Gemeint ist das Volumen: Jupiter hat etwa das 1.300-fache Volumen der Erde. Bei der Masse ist es „nur\" rund das 318-fache.", "en": "This is by volume: Jupiter's volume is about 1,300 times Earth's. By mass it's \"only\" about 318 times."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -75,6 +86,7 @@
       "question": {"de": "Wie lange werden Saturns Ringe noch existieren?", "en": "How long will Saturn's rings still exist?"},
       "answers": {"de": ["10 Jahre", "1 Millionen Jahre", "100 Millionen Jahre", "Auf Ewig"], "en": ["10 years", "1 million years", "100 million years", "Forever"]},
       "correct": 2,
+      "info": {"de": "Die Ringe bestehen größtenteils aus Eis und „regnen\" langsam auf Saturn. NASA-Messungen schätzen ihre Restlebensdauer auf rund 100 Millionen Jahre.", "en": "The rings are mostly ice and slowly \"rain\" down onto Saturn. NASA measurements estimate they have around 100 million years left."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -82,6 +94,7 @@
       "question": {"de": "Welche Neigung hat der Uranus?", "en": "What axial tilt does Uranus have?"},
       "answers": {"de": ["23°", "54°", "97°", "180°"], "en": ["23°", "54°", "97°", "180°"]},
       "correct": 2,
+      "info": {"de": "Gemeint ist die Achsneigung gegenüber der Bahnebene. Mit ~97° liegt Uranus quasi „auf der Seite\" — vermutlich Folge einer alten Kollision.", "en": "This is the axial tilt relative to the orbital plane. At ~97°, Uranus is essentially tipped on its side — likely the result of an ancient collision."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -89,6 +102,7 @@
       "question": {"de": "Wie schnell sind Neptuns Stürme?", "en": "How fast are Neptune's storms?"},
       "answers": {"de": ["1000 km/h", "2000 km/h", "5000 km/h", "10000 km/h"], "en": ["1000 km/h", "2000 km/h", "5000 km/h", "10000 km/h"]},
       "correct": 0,
+      "info": {"de": "Auf Neptun toben die schnellsten Winde des Sonnensystems — Spitzenwerte wurden in den dunklen Sturmflecken (z. B. „Great Dark Spot\") gemessen.", "en": "Neptune has the fastest winds in the solar system — peak speeds were measured in dark storm spots like the \"Great Dark Spot\"."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     }
   ],

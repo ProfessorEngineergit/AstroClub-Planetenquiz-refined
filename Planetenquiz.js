@@ -26,13 +26,16 @@ const uiCopy = {
         scoreboardName: 'Name für das Leaderboard',
         namePlaceholder: 'Dein Name',
         submitScore: 'Score senden',
-        savingScore: 'Wird gespeichert ...',
-        scoreSaved: 'Gespeichert. Dein Score ist im Leaderboard.',
+        savingScore: 'Score wird gespeichert ...',
+        scoreSaved: name => `Gespeichert als „${name}". Dein Score ist im Leaderboard.`,
         scoreNotReady: 'Firebase ist noch nicht verbunden. Trage zuerst die Konfiguration ein.',
         scoreFailed: 'Konnte nicht gespeichert werden. Prüfe Firebase-Konfiguration und Regeln.',
         scoreNameRequired: 'Bitte gib einen Namen ein.',
+        nameLabel: 'Name',
         restartQuiz: 'Quiz neu starten',
-        openScoreboard: 'Leaderboard öffnen'
+        openScoreboard: 'Leaderboard öffnen',
+        infoOpen: 'Info anzeigen',
+        infoClose: 'Info schließen'
     },
     en: {
         validationTitle: 'Please answer the highlighted areas.',
@@ -49,13 +52,16 @@ const uiCopy = {
         scoreboardName: 'Name for the leaderboard',
         namePlaceholder: 'Your name',
         submitScore: 'Send score',
-        savingScore: 'Saving ...',
-        scoreSaved: 'Saved. Your score is on the leaderboard.',
+        savingScore: 'Saving score ...',
+        scoreSaved: name => `Saved as "${name}". Your score is on the leaderboard.`,
         scoreNotReady: 'Firebase is not connected yet. Add the configuration first.',
         scoreFailed: 'Could not save. Check Firebase configuration and rules.',
         scoreNameRequired: 'Please enter a name.',
+        nameLabel: 'Name',
         restartQuiz: 'Restart quiz',
-        openScoreboard: 'Open leaderboard'
+        openScoreboard: 'Open leaderboard',
+        infoOpen: 'Show info',
+        infoClose: 'Close info'
     }
 };
 
@@ -90,6 +96,11 @@ function applyLanguageToStaticUI() {
 
     const evalBtn = document.getElementById('evaluateBtn');
     if (evalBtn && quizData?.ui?.submitButtonLabel) evalBtn.value = quizData.ui.submitButtonLabel[currentLang] || quizData.ui.submitButtonLabel.de;
+
+    const nameLabel = document.getElementById('namePromptLabel');
+    if (nameLabel) nameLabel.textContent = copy('scoreboardName');
+    const nameInput = document.getElementById('playerName');
+    if (nameInput) nameInput.placeholder = copy('namePlaceholder');
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -135,7 +146,18 @@ function renderQuiz() {
         questionDiv.id = `card-${q.id}`;
         questionDiv.setAttribute('data-question-id', q.id);
 
-        const questionHtml = `<div class="question"><h2>${escapeHtml(q.question[currentLang])}</h2>` +
+        const infoText = q.info?.[currentLang] || q.info?.de || '';
+        const infoLabel = (quizData.ui.infoButtonLabel?.[currentLang]) || copy('infoOpen');
+        const infoCloseLabel = (quizData.ui.infoCloseLabel?.[currentLang]) || copy('infoClose');
+        const infoBoxId = `info-${q.id}`;
+        const questionHeader = `
+            <div class="question-header">
+                <h2>${escapeHtml(q.question[currentLang])}</h2>
+                ${infoText ? `<button type="button" class="info-button" aria-expanded="false" aria-controls="${infoBoxId}" data-info-target="${infoBoxId}" title="${escapeHtml(infoLabel)}"><span aria-hidden="true">i</span><span class="visually-hidden">${escapeHtml(infoLabel)}</span></button>` : ''}
+            </div>
+            ${infoText ? `<div class="info-box" id="${infoBoxId}" role="region" aria-label="${escapeHtml(infoLabel)}" hidden>${escapeHtml(infoText)}</div>` : ''}
+        `;
+        const questionHtml = `<div class="question">${questionHeader}` +
             q.answers[currentLang].map((a, i) => `
                 <label class="option">
                     <input type="radio" name="${q.id}" value="${i}" id="${q.id}${String.fromCharCode(97+i)}">
@@ -144,6 +166,8 @@ function renderQuiz() {
             `</div>
             <button type="button" class="joker-button" onclick="useFiftyFifty('${q.id}', 'joker${idx+1}')" id="joker${idx+1}">${escapeHtml(quizData.ui.jokerButtonLabel[currentLang])}</button>`;
         questionDiv.innerHTML = questionHtml;
+        const infoBtn = questionDiv.querySelector('.info-button');
+        if (infoBtn) infoBtn.addEventListener('click', () => toggleInfoBox(infoBtn));
         quizContent.appendChild(questionDiv);
 
         if (idx + 1 === dragDropAfter) {
@@ -292,6 +316,20 @@ function handleDrop(e) {
     return false;
 }
 
+function toggleInfoBox(button) {
+    const targetId = button.getAttribute('data-info-target');
+    const box = document.getElementById(targetId);
+    if (!box) return;
+    const isOpen = !box.hasAttribute('hidden');
+    if (isOpen) {
+        box.setAttribute('hidden', '');
+        button.setAttribute('aria-expanded', 'false');
+    } else {
+        box.removeAttribute('hidden');
+        button.setAttribute('aria-expanded', 'true');
+    }
+}
+
 function attachAnswerChangeHandlers() {
     document.querySelectorAll("input[type='radio']").forEach(input => {
         input.addEventListener('change', () => {
@@ -300,6 +338,16 @@ function attachAnswerChangeHandlers() {
             refreshValidationNavigator();
         });
     });
+    const nameInput = document.getElementById('playerName');
+    if (nameInput) {
+        nameInput.addEventListener('input', () => {
+            const prompt = document.getElementById('namePrompt');
+            if (prompt && nameInput.value.trim()) {
+                prompt.classList.remove('needs-answer', 'invalid-focus');
+            }
+            refreshValidationNavigator();
+        });
+    }
 }
 
 function useFiftyFifty(question, buttonId) {
@@ -373,7 +421,44 @@ function checkAnswers() {
     });
 
     const finalScore = 5 * score;
-    renderResult(finalScore, pickFeedback(finalScore));
+    const playerNameInput = document.getElementById('playerName');
+    const playerName = playerNameInput ? playerNameInput.value.trim() : '';
+    renderResult(finalScore, pickFeedback(finalScore), playerName);
+    autoSubmitScore(finalScore, playerName);
+}
+
+async function autoSubmitScore(score, name) {
+    const status = document.getElementById('scoreSubmitStatus');
+    if (!status) return;
+
+    if (!name) {
+        status.textContent = copy('scoreNameRequired');
+        return;
+    }
+
+    const scoreClient = window.planetenquizScoreboard;
+    if (!scoreClient || typeof scoreClient.submitScore !== 'function') {
+        status.textContent = copy('scoreNotReady');
+        return;
+    }
+
+    status.textContent = copy('savingScore');
+    try {
+        await scoreClient.submitScore({
+            name,
+            score,
+            maxScore: MAX_SCORE,
+            lang: currentLang,
+            durationSeconds: Math.round((Date.now() - quizStartedAt) / 1000)
+        });
+        status.textContent = copy('scoreSaved', name);
+        status.classList.add('is-saved');
+    } catch (error) {
+        console.error(error);
+        status.textContent = error?.message === 'firebase-not-configured'
+            ? copy('scoreNotReady')
+            : copy('scoreFailed');
+    }
 }
 
 function collectMissingAnswers() {
@@ -403,6 +488,16 @@ function collectMissingAnswers() {
             });
         }
     });
+
+    const namePrompt = document.getElementById('namePrompt');
+    const nameInput = document.getElementById('playerName');
+    if (namePrompt && nameInput && !nameInput.value.trim()) {
+        namePrompt.classList.add('needs-answer');
+        missing.push({
+            element: namePrompt,
+            label: copy('nameLabel')
+        });
+    }
 
     return missing;
 }
@@ -502,7 +597,7 @@ function clearScoringState() {
     });
 }
 
-function renderResult(score, feedback) {
+function renderResult(score, feedback, playerName) {
     const percent = Math.round((score / MAX_SCORE) * 100);
     const feedbackText = escapeHtml(feedback);
     const result = document.getElementById('result');
@@ -518,14 +613,7 @@ function renderResult(score, feedback) {
                 <span></span>
             </div>
             <p class="feedback">${feedbackText}</p>
-            <form id="scoreSubmitForm" class="score-submit" autocomplete="off">
-                <label for="playerName">${escapeHtml(copy('scoreboardName'))}</label>
-                <div class="score-submit-row">
-                    <input id="playerName" name="playerName" type="text" maxlength="30" placeholder="${escapeHtml(copy('namePlaceholder'))}" required>
-                    <button type="submit">${escapeHtml(copy('submitScore'))}</button>
-                </div>
-                <p id="scoreSubmitStatus" class="score-submit-status" aria-live="polite"></p>
-            </form>
+            <p id="scoreSubmitStatus" class="score-submit-status" aria-live="polite"></p>
             <div class="result-actions">
                 <a class="result-link" href="${escapeHtml(getRestartUrl())}">${escapeHtml(copy('restartQuiz'))}</a>
                 <a class="result-link" href="${escapeHtml(getScoreboardUrl())}">${escapeHtml(copy('openScoreboard'))}</a>
@@ -533,52 +621,7 @@ function renderResult(score, feedback) {
         </section>
     `;
 
-    result.querySelector('#scoreSubmitForm')?.addEventListener('submit', event => submitScore(event, score));
     result.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-async function submitScore(event, score) {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    const nameInput = form.querySelector('#playerName');
-    const button = form.querySelector('button[type="submit"]');
-    const status = form.querySelector('#scoreSubmitStatus');
-    const name = nameInput.value.trim();
-
-    if (!name) {
-        status.textContent = copy('scoreNameRequired');
-        nameInput.focus();
-        return;
-    }
-
-    const scoreClient = window.planetenquizScoreboard;
-    if (!scoreClient || typeof scoreClient.submitScore !== 'function') {
-        status.textContent = copy('scoreNotReady');
-        return;
-    }
-
-    button.disabled = true;
-    status.textContent = copy('savingScore');
-
-    try {
-        await scoreClient.submitScore({
-            name,
-            score,
-            maxScore: MAX_SCORE,
-            lang: currentLang,
-            durationSeconds: Math.round((Date.now() - quizStartedAt) / 1000)
-        });
-        status.textContent = copy('scoreSaved');
-        form.classList.add('is-saved');
-    } catch (error) {
-        console.error(error);
-        status.textContent = error?.message === 'firebase-not-configured'
-            ? copy('scoreNotReady')
-            : copy('scoreFailed');
-    } finally {
-        button.disabled = false;
-    }
 }
 
 function pickFeedback(score) {
