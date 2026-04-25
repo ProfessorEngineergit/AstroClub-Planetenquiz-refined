@@ -70,7 +70,7 @@
       "question": {"de": "Wie hoch ist der Olympus Mons?", "en": "How high is Olympus Mons?"},
       "answers": {"de": ["22km", "34km", "100km", "370km"], "en": ["22 km", "34 km", "100 km", "370 km"]},
       "correct": 0,
-      "info": {"de": "Tipp: Olympus Mons ist ein erloschener Schildvulkan auf dem Mars — der höchste bekannte Berg im Sonnensystem. Aber 100 km wären schon utopisch hoch.", "en": "Hint: Olympus Mons is an extinct shield volcano on Mars — the tallest known mountain in the solar system. But 100 km would already be unrealistically high."},
+      "info": {"de": "Tipp: Olympus Mons ist ein erloschener Schildvulkan auf dem Mars — der höchste bekannte Berg im Sonnensystem.", "en": "Hint: Olympus Mons is an extinct shield volcano on Mars — the tallest known mountain in the solar system."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
