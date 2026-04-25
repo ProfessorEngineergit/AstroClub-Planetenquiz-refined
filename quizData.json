@@ -1,4 +1,4 @@
-{
+e{
   "ui": {
     "title": {"de": "Planeten-Quiz", "en": "Planet Quiz"},
     "submitButtonLabel": {"de": "Quiz auswerten", "en": "Evaluate Quiz"},
@@ -78,7 +78,7 @@
       "question": {"de": "Wie oft passt die Erde in den größten Planeten, den Jupiter?", "en": "How many times does Earth fit into the largest planet, Jupiter?"},
       "answers": {"de": ["13 Mal", "130 Mal", "1300 Mal", "13000 Mal"], "en": ["13 times", "130 times", "1300 times", "13000 times"]},
       "correct": 2,
-      "info": {"de": "Gemeint ist das Volumen: Jupiter hat etwa das 1.300-fache Volumen der Erde. Bei der Masse ist es „nur\" rund das 318-fache.", "en": "This is by volume: Jupiter's volume is about 1,300 times Earth's. By mass it's \"only\" about 318 times."},
+      "info": {"de": "Gemeint ist das Volumen.", "en": "This is by volume."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -94,7 +94,7 @@
       "question": {"de": "Welche Neigung hat der Uranus?", "en": "What axial tilt does Uranus have?"},
       "answers": {"de": ["23°", "54°", "97°", "180°"], "en": ["23°", "54°", "97°", "180°"]},
       "correct": 2,
-      "info": {"de": "Gemeint ist die Achsneigung gegenüber der Bahnebene. Mit ~97° liegt Uranus quasi „auf der Seite\" — vermutlich Folge einer alten Kollision.", "en": "This is the axial tilt relative to the orbital plane. At ~97°, Uranus is essentially tipped on its side — likely the result of an ancient collision."},
+      "info": {"de": "Gemeint ist die Achsneigung gegenüber der Bahnebene.", "en": "This is the axial tilt relative to the orbital plane."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
