@@ -14,7 +14,7 @@
       "question": {"de": "Wie viele Planeten gibt es in unserem Sonnensystem?", "en": "How many planets are in our solar system?"},
       "answers": {"de": ["6", "8", "9", "10"], "en": ["6", "8", "9", "10"]},
       "correct": 1,
-      "info": {"de": "Tipp: Gemeint sind nur die offiziellen Planeten nach IAU-Definition — Zwergplaneten wie Pluto zählen nicht mit. Wie viele „klassische\" Planeten fallen dir ein?", "en": "Hint: Only official planets per the IAU definition count — dwarf planets like Pluto don't. How many \"classical\" planets can you name?"},
+      "info": {"de": "Info: Die Internationale Astronomische Union (IAU) legt offizielle Begriffe in der Astronomie fest. Ein Zwergplanet ist eine eigene Kategorie von Himmelskörpern.", "en": "Info: The International Astronomical Union (IAU) defines official astronomy terms. A dwarf planet is its own category of celestial body."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -22,7 +22,7 @@
       "question": {"de": "Welcher dieser Planeten hat die meisten Monde?", "en": "Which of these planets has the most moons?"},
       "answers": {"de": ["Merkur", "Erde", "Jupiter", "Uranus"], "en": ["Mercury", "Earth", "Jupiter", "Uranus"]},
       "correct": 2,
-      "info": {"de": "Tipp: Je größer und schwerer ein Planet ist, desto mehr Objekte kann seine Schwerkraft langfristig einfangen.", "en": "Hint: The bigger and more massive a planet is, the more objects its gravity can capture over time."},
+      "info": {"de": "Info: Monde sind natürliche Begleiter, die einen Planeten umkreisen. Man nennt sie auch natürliche Satelliten.", "en": "Info: Moons are natural objects that orbit a planet. They are also called natural satellites."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -30,7 +30,7 @@
       "question": {"de": "Welcher Planet hat die geringste Durchschnittsentfernung von uns?", "en": "Which planet has the smallest average distance from Earth?"},
       "answers": {"de": ["Merkur", "Mars", "Saturn", "Uranus"], "en": ["Mercury", "Mars", "Saturn", "Uranus"]},
       "correct": 0,
-      "info": {"de": "Tipp: Gemeint ist der Mittelwert über die ganze Umlaufbahn (nicht der nächste Vorbeiflug). Welche Planeten kreisen der Sonne — und damit auch uns — im Mittel am nächsten?", "en": "Hint: This means the average over the entire orbit (not the closest approach). Which planets orbit closest to the Sun — and thus to us — on average?"},
+      "info": {"de": "Info: Durchschnittsentfernung bedeutet ein Mittelwert über einen längeren Zeitraum. Sie ist nicht dasselbe wie der Abstand in einem einzelnen Moment.", "en": "Info: Average distance means a mean value over a longer period of time. It is not the same as the distance at one single moment."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -38,7 +38,7 @@
       "question": {"de": "Seit wann ist Pluto kein Planet mehr?", "en": "Since when is Pluto no longer a planet?"},
       "answers": {"de": ["1989", "2001", "2006", "2014"], "en": ["1989", "2001", "2006", "2014"]},
       "correct": 2,
-      "info": {"de": "Tipp: Es war ein Beschluss der Internationalen Astronomischen Union (IAU) — und es passierte im selben Jahrzehnt, in dem auch Facebook und Twitter gegründet wurden.", "en": "Hint: It was a decision by the International Astronomical Union (IAU) — and it happened in the same decade Facebook and Twitter were founded."},
+      "info": {"de": "Info: Pluto wird heute als Zwergplanet bezeichnet. Diese Kategorie unterscheidet sich von der Kategorie Planet.", "en": "Info: Pluto is now described as a dwarf planet. That category is different from the category planet."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -46,7 +46,7 @@
       "question": {"de": "Wie groß ist der Temperaturunterschied auf dem Merkur?", "en": "What is the temperature difference on Mercury?"},
       "answers": {"de": ["30°", "370°", "650°", "790°"], "en": ["30°", "370°", "650°", "790°"]},
       "correct": 2,
-      "info": {"de": "Tipp: Gemeint ist die Differenz zwischen Tag- und Nachtseite. Merkur hat fast keine Atmosphäre, die Wärme speichern könnte — die Lücke ist also gewaltig.", "en": "Hint: This is the gap between dayside and nightside. Mercury has almost no atmosphere to hold heat — so the gap is enormous."},
+      "info": {"de": "Info: Ein Temperaturunterschied beschreibt die Spanne zwischen zwei Messwerten, zum Beispiel zwischen einer sehr warmen und einer sehr kalten Seite.", "en": "Info: A temperature difference describes the gap between two measurements, for example between a very warm side and a very cold side."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -54,7 +54,7 @@
       "question": {"de": "Ist ein Venus-Tag oder ein Venus-Jahr länger?", "en": "Is a Venus day or a Venus year longer?"},
       "answers": {"de": ["Venus-Tag", "Venus-Jahr", "Gleich lang", "Immer unterschiedlich"], "en": ["Venus day", "Venus year", "Same length", "Always different"]},
       "correct": 0,
-      "info": {"de": "Tipp: Ein „Tag\" = eine Drehung um die eigene Achse, ein „Jahr\" = ein Umlauf um die Sonne. Die Venus dreht sich extrem langsam um sich selbst — was sagt das über die Länge eines Tages dort?", "en": "Hint: A \"day\" = one rotation on its own axis, a \"year\" = one orbit around the Sun. Venus rotates extremely slowly on its axis — what does that say about how long a day there lasts?"},
+      "info": {"de": "Info: Ein Planetentag beschreibt eine Drehung um die eigene Achse. Ein Planetenjahr beschreibt einen Umlauf um die Sonne.", "en": "Info: A planetary day describes one rotation on a planet's own axis. A planetary year describes one orbit around the Sun."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -62,7 +62,7 @@
       "question": {"de": "Wann entstand der Erdmond?", "en": "When did Earth's moon form?"},
       "answers": {"de": ["1899", "Vor 1 Millionen Jahren", "Vor 1 Milliarden Jahren", "Vor 4,5 Milliarden Jahren"], "en": ["1899", "1 million years ago", "1 billion years ago", "4.5 billion years ago"]},
       "correct": 3,
-      "info": {"de": "Tipp: Der Mond entstand kurz nach der jungen Erde selbst — und unser Planet ist schon ziemlich alt. Eine Million Jahre reicht da bei Weitem nicht.", "en": "Hint: The Moon formed shortly after the young Earth itself — and our planet is already pretty ancient. A million years is nowhere near enough."},
+      "info": {"de": "Info: Mit Erdmond ist der natürliche Mond der Erde gemeint. Entstehung beschreibt in der Astronomie, wie und wann ein Himmelskörper gebildet wurde.", "en": "Info: Earth's moon means the natural moon of our planet. Formation describes how and when a celestial body came into being."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -70,7 +70,7 @@
       "question": {"de": "Wie hoch ist der Olympus Mons?", "en": "How high is Olympus Mons?"},
       "answers": {"de": ["22km", "34km", "100km", "370km"], "en": ["22 km", "34 km", "100 km", "370 km"]},
       "correct": 0,
-      "info": {"de": "Tipp: Olympus Mons ist ein erloschener Schildvulkan auf dem Mars — der höchste bekannte Berg im Sonnensystem.", "en": "Hint: Olympus Mons is an extinct shield volcano on Mars — the tallest known mountain in the solar system."},
+      "info": {"de": "Info: Olympus Mons ist der Name eines großen Vulkans auf dem Mars. „Mons\" ist ein lateinisches Wort für Berg.", "en": "Info: Olympus Mons is the name of a large volcano on Mars. \"Mons\" is a Latin word for mountain."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -78,7 +78,7 @@
       "question": {"de": "Wie oft passt die Erde in den größten Planeten, den Jupiter?", "en": "How many times does Earth fit into the largest planet, Jupiter?"},
       "answers": {"de": ["13 Mal", "130 Mal", "1300 Mal", "13000 Mal"], "en": ["13 times", "130 times", "1300 times", "13000 times"]},
       "correct": 2,
-      "info": {"de": "Tipp: Gemeint ist das Volumen — und Größenunterschiede potenzieren sich beim Volumen ordentlich (dreifacher Radius → 27-faches Volumen).", "en": "Hint: This is by volume — and size differences scale up steeply (three times the radius → 27 times the volume)."},
+      "info": {"de": "Info: Hier geht es um Volumen, also darum, wie viel Raum ein Körper einnimmt. Das ist nicht dasselbe wie Masse oder Gewicht.", "en": "Info: This is about volume, meaning how much space an object takes up. That is not the same as mass or weight."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -86,7 +86,7 @@
       "question": {"de": "Wie lange werden Saturns Ringe noch existieren?", "en": "How long will Saturn's rings still exist?"},
       "answers": {"de": ["10 Jahre", "1 Millionen Jahre", "100 Millionen Jahre", "Auf Ewig"], "en": ["10 years", "1 million years", "100 million years", "Forever"]},
       "correct": 2,
-      "info": {"de": "Tipp: Die Ringe bestehen vor allem aus Eis und „regnen\" langsam auf Saturn herab. Astronomisch gesehen sind sie nicht ewig — aber auch keine Eintagsfliege.", "en": "Hint: The rings are mostly ice and slowly \"rain\" down onto Saturn. Astronomically speaking they're not eternal — but also not short-lived."},
+      "info": {"de": "Info: Planetenringe bestehen aus vielen kleinen Teilchen, die einen Planeten umkreisen. Bei Saturn sind diese Ringe besonders gut sichtbar.", "en": "Info: Planetary rings are made of many small particles orbiting a planet. Saturn's rings are especially easy to see."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -94,7 +94,7 @@
       "question": {"de": "Welche Neigung hat der Uranus?", "en": "What axial tilt does Uranus have?"},
       "answers": {"de": ["23°", "54°", "97°", "180°"], "en": ["23°", "54°", "97°", "180°"]},
       "correct": 2,
-      "info": {"de": "Tipp: Gemeint ist die Achsneigung gegenüber der Bahnebene. Uranus ist berühmt dafür, quasi „auf der Seite zu liegen\" und so um die Sonne zu rollen.", "en": "Hint: This is the axial tilt relative to the orbital plane. Uranus is famous for basically \"lying on its side\" as it rolls around the Sun."},
+      "info": {"de": "Info: Achsneigung beschreibt den Winkel zwischen der Drehachse eines Planeten und seiner Bahnebene um die Sonne.", "en": "Info: Axial tilt describes the angle between a planet's rotation axis and the plane of its orbit around the Sun."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
@@ -102,7 +102,7 @@
       "question": {"de": "Wie schnell sind Neptuns Stürme?", "en": "How fast are Neptune's storms?"},
       "answers": {"de": ["1000 km/h", "2000 km/h", "5000 km/h", "10000 km/h"], "en": ["1000 km/h", "2000 km/h", "5000 km/h", "10000 km/h"]},
       "correct": 0,
-      "info": {"de": "Tipp: Auf Neptun toben die schnellsten Winde des Sonnensystems — heftiger als jeder Hurrikan auf der Erde, aber natürlich weit unter Schallgeschwindigkeit auf Erdmaßstab denken hilft hier wenig.", "en": "Hint: Neptune has the fastest winds in the solar system — far stronger than any hurricane on Earth, so don't anchor your guess to earthly storm speeds."},
+      "info": {"de": "Info: Stürme auf Gas- und Eisplaneten sind große Bewegungen in der Atmosphäre. Geschwindigkeiten werden hier in Kilometern pro Stunde angegeben.", "en": "Info: Storms on gas and ice planets are large movements in the atmosphere. Speeds here are given in kilometers per hour."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     }
   ],
