@@ -37,7 +37,7 @@
     },
     {
       "id": "frage5",
-      "question": {"de": "Wie groß ist der Temperaturunterschied auf dem Merkur?", "en": "What is the temperature difference on Mercury?"},
+      "question": {"de": "Wie groß ist der Temperaturunterschied zwischen Tag und Nacht auf dem Merkur?", "en": "What is the temperature difference on Mercury?"},
       "answers": {"de": ["30°", "370°", "650°", "790°"], "en": ["30°", "370°", "650°", "790°"]},
       "correct": 2,
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
