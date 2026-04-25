@@ -30,7 +30,7 @@
       "question": {"de": "Welcher Planet hat die geringste Durchschnittsentfernung von uns?", "en": "Which planet has the smallest average distance from Earth?"},
       "answers": {"de": ["Merkur", "Mars", "Saturn", "Uranus"], "en": ["Mercury", "Mars", "Saturn", "Uranus"]},
       "correct": 0,
-      "info": {"de": "„Durchschnittsentfernung\" meint die über die gesamte Umlaufbahn gemittelte Distanz — nicht den minimalen Abstand. Überraschend: Merkur ist im Mittel näher als die Venus.", "en": "\"Average distance\" means the distance averaged over the entire orbit — not the closest approach. Surprisingly, Mercury is on average closer to Earth than Venus."},
+      "info": {"de": "„Durchschnittsentfernung\" meint die über die gesamte Umlaufbahn gemittelte Distanz — nicht den minimalen Abstand.", "en": "\"Average distance\" means the distance averaged over the entire orbit — not the closest approach."},
       "jokerText": {"de": "Der 50:50 Joker wurde bereits verwendet!", "en": "The 50:50 joker has already been used!"}
     },
     {
