@@ -52,7 +52,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function renderQuiz() {
     const quizContent = document.getElementById('quizContent');
+    const dragDropContent = document.getElementById('dragDropContent');
     quizContent.innerHTML = '';
+    if (dragDropContent) dragDropContent.innerHTML = '';
+    // Stale Result-Anzeigen entfernen, falls Sprache während laufendem Quiz gewechselt wird
+    const resultEl = document.getElementById('result');
+    const antwortEl = document.getElementById('antwort');
+    if (resultEl) resultEl.innerHTML = '';
+    if (antwortEl) antwortEl.innerHTML = '';
+
+    const totalQuestions = quizData.questions.length;
+    const dragDropAfter = Number.isInteger(quizData.dragDrop.afterQuestionIndex)
+        ? quizData.dragDrop.afterQuestionIndex
+        : totalQuestions;
+
     quizData.questions.forEach((q, idx) => {
         const questionDiv = document.createElement('div');
         questionDiv.className = 'text-box';
@@ -65,11 +78,28 @@ function renderQuiz() {
             <button type="button" class="joker-button" onclick="useFiftyFifty('${q.id}', 'joker${idx+1}')" id="joker${idx+1}">${quizData.ui.jokerButtonLabel[currentLang]}</button>`;
         questionDiv.innerHTML = questionHtml;
         quizContent.appendChild(questionDiv);
+
+        // Sortier-Aufgabe genau nach der konfigurierten Anzahl Fragen einschieben
+        if (idx + 1 === dragDropAfter) {
+            renderDragDropBlock(quizContent);
+        }
     });
 
-    // Drag & Drop
-    const dragDropContent = document.getElementById('dragDropContent');
-    dragDropContent.innerHTML = `<div class="text-box"><h2>${quizData.dragDrop.title[currentLang]}</h2><p class="instruction">${quizData.dragDrop.instruction[currentLang]}</p><div id="planetButtons" class="planet-buttons-container"></div><div id="dropZones" class="drop-zones-container"></div></div>`;
+    // Fallback: wenn afterQuestionIndex außerhalb der Range war, ans Ende hängen
+    if (dragDropAfter < 1 || dragDropAfter > totalQuestions) {
+        renderDragDropBlock(dragDropContent || quizContent);
+    }
+}
+
+function renderDragDropBlock(container) {
+    const dragDropDiv = document.createElement('div');
+    dragDropDiv.className = 'text-box';
+    dragDropDiv.innerHTML = `<h2>${quizData.dragDrop.title[currentLang]}</h2>` +
+        `<p class="instruction">${quizData.dragDrop.instruction[currentLang]}</p>` +
+        `<div id="planetButtons" class="planet-buttons-container"></div>` +
+        `<div id="dropZones" class="drop-zones-container"></div>`;
+    container.appendChild(dragDropDiv);
+
     const planetButtonsContainer = document.getElementById('planetButtons');
     quizData.dragDrop.planets[currentLang].forEach(planet => {
         const btn = document.createElement('button');
@@ -214,6 +244,11 @@ function useFiftyFifty(question, buttonId) {
 }
 
 function checkAnswers() {
+    // Vor jeder Auswertung beide Anzeige-Balken leeren, damit keine alten
+    // Hinweise oder Ergebnisse stehenbleiben (Glitch-Fix).
+    document.getElementById("antwort").innerHTML = '';
+    document.getElementById("result").innerHTML = '';
+
     let unanswered = quizData.questions.filter(q => !document.querySelector(`input[name='${q.id}']:checked`));
     if (unanswered.length > 0) {
         document.getElementById("antwort").innerHTML = quizData.resultTexts[currentLang][1];
@@ -241,8 +276,23 @@ function checkAnswers() {
         }
     });
     let Newscore = 5 * score;
+    let feedback = pickFeedback(Newscore);
     let result = document.getElementById('result');
-    result.innerHTML = quizData.resultTexts[currentLang][0].replace('{score}', Newscore).replace('{restartUrl}', window.location.href);
+    result.innerHTML = quizData.resultTexts[currentLang][0]
+        .replace('{score}', Newscore)
+        .replace('{feedback}', feedback)
+        .replace('{restartUrl}', window.location.href);
+}
+
+function pickFeedback(score) {
+    const tiers = quizData.scoreFeedback?.[currentLang];
+    if (!Array.isArray(tiers) || tiers.length === 0) return '';
+    // tiers werden absteigend nach `min` durchsucht; erste passende Stufe gewinnt
+    const sorted = [...tiers].sort((a, b) => b.min - a.min);
+    for (const tier of sorted) {
+        if (score >= tier.min) return tier.text;
+    }
+    return '';
 }
 
 

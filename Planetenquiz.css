@@ -1,191 +1,253 @@
-/* Importiere moderne Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap');
+/* Moderne Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-/* Schlichtere Variablen für minimalistisches Design */
+/* ===========================================================
+   Dark-Mode Designsystem
+   =========================================================== */
 :root {
-    --primary-color: #4a5fc1;
-    --primary-dark: #3a4ba1;
-    --secondary-color: #6b7fd1;
-    --accent-color: #5eb3f6;
-    --success-color: #4caf50;
-    --error-color: #ef5350;
-    --warning-color: #ff9800;
-    --text-light: #ffffff;
-    --text-dark: #2c3e50;
-    --text-gray: #607d8b;
-    --bg-light: rgba(255, 255, 255, 0.92);
-    --bg-hover: rgba(255, 255, 255, 0.98);
-    --border-color: rgba(74, 95, 193, 0.2);
-    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
-    --border-radius: 12px;
-    --transition: all 0.2s ease;
+    /* Akzent / Markenfarben */
+    --primary: #7aa2ff;
+    --primary-strong: #5b8bff;
+    --primary-soft: rgba(122, 162, 255, 0.18);
+    --accent: #9d6bff;
+    --accent-soft: rgba(157, 107, 255, 0.18);
+    --highlight: #5eead4;
+
+    /* Status */
+    --success: #4ade80;
+    --success-soft: rgba(74, 222, 128, 0.16);
+    --error: #f87171;
+    --error-soft: rgba(248, 113, 113, 0.16);
+    --warning: #fbbf24;
+    --warning-strong: #f59e0b;
+
+    /* Text */
+    --text: #eef2ff;
+    --text-soft: #c8d1e8;
+    --text-muted: #8a93b0;
+
+    /* Glas / Oberflächen */
+    --glass-bg: rgba(15, 20, 38, 0.55);
+    --glass-bg-strong: rgba(15, 20, 38, 0.72);
+    --glass-bg-hover: rgba(20, 28, 52, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.10);
+    --glass-border-strong: rgba(255, 255, 255, 0.18);
+
+    /* Schatten / Glow */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.55);
+    --glow-primary: 0 0 0 1px rgba(122, 162, 255, 0.35), 0 0 24px rgba(122, 162, 255, 0.25);
+    --glow-success: 0 0 0 1px rgba(74, 222, 128, 0.45), 0 0 24px rgba(74, 222, 128, 0.25);
+    --glow-error:   0 0 0 1px rgba(248, 113, 113, 0.45), 0 0 24px rgba(248, 113, 113, 0.25);
+
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+    background-color: #05070f;
 }
 
 body {
-    background-image: url('hintergrund2.jpg');
-    background-size: cover;
-    background-repeat: repeat-y;
-    background-position: center;
-    /* Hintergrund soll mitscrollen: attachment fixed entfernt */
-    background-attachment: scroll;
     margin: 0;
     padding: 0;
-    font-family: 'Inter', sans-serif;
-    color: var(--text-dark);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text);
     min-height: 100vh;
     position: relative;
-    overflow-x: hidden; /* Verhindert horizontales Scrollen durch Transform */
-}
+    overflow-x: hidden;
 
-html, body {
-    /* Smooth Scroll für sanfteres Navigieren */
-    scroll-behavior: smooth;
-    /* Verhindert weißes Overscroll/Glühen an Ober- und Unterkante, wo unterstützt */
-    overscroll-behavior: none;
-    /* Fallback-Hintergrundfarbe für Rubber-Band-Bereiche */
-    background-color: #0f1a2a;
-}
-
-/* Einfaches Overlay */
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(5, 3, 69, 0.326);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Zweite Hintergrundhälfte: dasselbe Bild gespiegelt, fügt sich unten nahtlos an */
-body::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100vh; /* Startet direkt nach der ersten Bildhöhe (Viewport-Höhe) */
-    height: 100vh; /* Gleiche Höhe wie erste Hälfte */
+    /* Hintergrundbild bleibt beim Scrollen stehen (Parallax) */
     background-image: url('hintergrund2.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
-    transform: scaleY(-1); /* Spiegelt das Bild vertikal */
-    transform-origin: top; /* Spiegelung ab oberer Kante */
-    z-index: -1; /* Hinter Overlay und Inhalt */
-    pointer-events: none;
+    background-attachment: fixed;
 }
 
+/* Dark-Mode Vignette + Farbverlauf für Stimmung */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse at top, rgba(60, 80, 160, 0.25), transparent 60%),
+        radial-gradient(ellipse at bottom, rgba(80, 40, 130, 0.30), transparent 60%),
+        linear-gradient(180deg, rgba(5, 7, 15, 0.55) 0%, rgba(5, 7, 15, 0.78) 100%);
+}
+
+/* Sterne/Glitter-Layer für etwas extra Tiefe */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+        radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,0.6), transparent 50%),
+        radial-gradient(1px 1px at 78% 18%, rgba(255,255,255,0.45), transparent 50%),
+        radial-gradient(1.5px 1.5px at 45% 70%, rgba(255,255,255,0.35), transparent 50%),
+        radial-gradient(1px 1px at 88% 80%, rgba(255,255,255,0.5), transparent 50%),
+        radial-gradient(1px 1px at 25% 90%, rgba(255,255,255,0.4), transparent 50%);
+    opacity: 0.6;
+}
+
+/* ===========================================================
+   Container & Layout
+   =========================================================== */
 .container {
-    max-width: 850px;
+    max-width: 880px;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 40px 20px 60px;
     position: relative;
     z-index: 1;
 }
 
+/* ===========================================================
+   Glas-Karten
+   =========================================================== */
 .text-box {
-    background: var(--bg-light);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    margin-bottom: 25px;
-    border-radius: var(--border-radius);
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    padding: 28px 30px;
+    margin-bottom: 22px;
+    border-radius: var(--radius);
     box-shadow: var(--shadow);
-    transition: var(--transition);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--glass-border);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtiler Glanzstreifen oben */
+.text-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+    pointer-events: none;
 }
 
 .text-box:hover {
-    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--glass-border-strong);
+    background: var(--glass-bg-hover);
 }
 
-/* Header-Box mit Logo */
+/* Header */
 .header-box {
     text-align: center;
-    padding: 25px 30px;
+    padding: 30px 30px 28px;
+    background: linear-gradient(135deg, rgba(122,162,255,0.12), rgba(157,107,255,0.10)), var(--glass-bg-strong);
 }
 
 .lang-switch {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
+    gap: 10px;
+    margin-bottom: 14px;
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text-soft);
 }
 
 .lang-switch select {
-    padding: 5px 10px;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-hover);
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border-strong);
+    background: rgba(15, 20, 38, 0.7);
+    color: var(--text);
     font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
     transition: var(--transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23c8d1e8' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
 }
 
-.lang-switch select:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(74, 95, 193, 0.12);
+.lang-switch select:hover,
+.lang-switch select:focus {
+    border-color: var(--primary);
+    box-shadow: var(--glow-primary);
+    outline: none;
+}
+
+.lang-switch select option {
+    background: #0f1426;
+    color: var(--text);
 }
 
 .logo {
     max-width: 180px;
     height: auto;
-    margin: 0 auto 15px;
+    margin: 0 auto 18px;
     display: block;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
 }
 
 .text-box h1 {
-    margin: 10px 0 0 0;
-    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin: 6px 0 0 0;
+    font-size: clamp(2rem, 6vw, 3.6rem);
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    color: var(--primary-color);
-    text-align: center;
     letter-spacing: -0.5px;
+    text-align: center;
+    background: linear-gradient(135deg, #c2d3ff 0%, #7aa2ff 45%, #b58dff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 24px rgba(122,162,255,0.25);
 }
 
+/* ===========================================================
+   Fragen & Antwortoptionen
+   =========================================================== */
 .question h2 {
     font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 20px;
+    color: var(--text);
+    margin-bottom: 22px;
     text-align: center;
-    line-height: 1.6;
+    line-height: 1.55;
 }
 
 .option {
-    margin: 12px 0;
+    margin: 10px 0;
     padding: 14px 18px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     transition: var(--transition);
     cursor: pointer;
-    background: rgba(74, 95, 193, 0.08);
-    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    color: var(--text-soft);
     font-size: 1rem;
     font-weight: 500;
     display: block;
     user-select: none;
+    position: relative;
 }
 
 .option:hover {
-    background: rgba(74, 95, 193, 0.15);
-    border-color: var(--primary-color);
+    background: var(--primary-soft);
+    border-color: rgba(122, 162, 255, 0.45);
+    color: var(--text);
+    transform: translateX(2px);
 }
 
 .option input[type="radio"] {
@@ -193,42 +255,73 @@ body::after {
     cursor: pointer;
     width: 18px;
     height: 18px;
-    accent-color: var(--primary-color);
+    accent-color: var(--primary);
     vertical-align: middle;
 }
 
 .option:has(input[type="radio"]:checked) {
-    background: rgba(74, 95, 193, 0.2);
-    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(122,162,255,0.22), rgba(157,107,255,0.18));
+    border-color: var(--primary);
+    color: var(--text);
+    font-weight: 600;
+    box-shadow: var(--glow-primary);
+}
+
+/* ===========================================================
+   Inline-Färbung (Korrekt/Falsch) durch JS überschreiben
+   JS setzt style="color: green" / "color: red". Dark-Mode-tauglich umlackieren.
+   =========================================================== */
+.option[style*="color: green"],
+.option[style*="color:green"] {
+    color: var(--text) !important;
+    background: var(--success-soft) !important;
+    border-color: var(--success) !important;
+    box-shadow: var(--glow-success) !important;
     font-weight: 600;
 }
 
-/* Input Felder */
+.option[style*="color: red"],
+.option[style*="color:red"] {
+    color: var(--text) !important;
+    background: var(--error-soft) !important;
+    border-color: var(--error) !important;
+    box-shadow: var(--glow-error) !important;
+    font-weight: 600;
+}
+
+/* ===========================================================
+   Texteingaben
+   =========================================================== */
 input[type="text"] {
     width: 100%;
     padding: 12px 15px;
     margin: 8px 0;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
+    border: 1px solid var(--glass-border-strong);
+    border-radius: var(--radius-sm);
     font-size: 1rem;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     transition: var(--transition);
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--text-dark);
+    background: rgba(15, 20, 38, 0.55);
+    color: var(--text);
 }
+
+input[type="text"]::placeholder { color: var(--text-muted); }
 
 input[type="text"]:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(74, 95, 193, 0.1);
+    border-color: var(--primary);
+    box-shadow: var(--glow-primary);
+    background: rgba(15, 20, 38, 0.75);
 }
 
-/* Drag & Drop Planeten-Sortierung */
+/* ===========================================================
+   Drag & Drop – Planeten
+   =========================================================== */
 .instruction {
-    font-size: 1rem;
-    color: var(--text-gray);
-    margin: 12px 0 20px;
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    margin: 10px 0 22px;
     text-align: center;
     font-weight: 500;
 }
@@ -238,29 +331,28 @@ input[type="text"]:focus {
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    padding: 20px;
-    background: rgba(74, 95, 193, 0.06);
-    border-radius: 10px;
-    margin-bottom: 25px;
+    padding: 22px;
+    background: rgba(122, 162, 255, 0.05);
+    border-radius: var(--radius-sm);
+    margin-bottom: 22px;
     min-height: 100px;
-    border: 1px dashed var(--border-color);
+    border: 1px dashed rgba(122, 162, 255, 0.35);
 }
 
 .planet-button {
-    background: var(--primary-color);
-    border: none;
-    color: var(--text-light);
-    /* Einheitliche Größe für alle Drag-Elemente */
+    background: linear-gradient(135deg, var(--primary-strong), var(--accent));
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
     width: 130px;
     height: 48px;
-    padding: 0 10px; /* Innenabstand horizontal, vertikal über height geregelt */
+    padding: 0 10px;
     font-size: 0.95rem;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     cursor: grab;
     transition: var(--transition);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 14px rgba(91, 139, 255, 0.35), inset 0 1px 0 rgba(255,255,255,0.2);
     user-select: none;
     display: flex;
     align-items: center;
@@ -268,241 +360,269 @@ input[type="text"]:focus {
     box-sizing: border-box;
     text-align: center;
     white-space: nowrap;
+    letter-spacing: 0.2px;
 }
 
 .planet-button:hover {
-    background: var(--primary-dark);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(91, 139, 255, 0.55), inset 0 1px 0 rgba(255,255,255,0.25);
+    filter: brightness(1.08);
 }
 
-.planet-button:active {
-    cursor: grabbing;
-}
-
-.planet-button.dragging {
-    opacity: 0.5;
-    cursor: grabbing;
-}
+.planet-button:active { cursor: grabbing; transform: translateY(0); }
+.planet-button.dragging { opacity: 0.45; cursor: grabbing; }
 
 .drop-zones-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .drop-zone {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 6px 10px;
-    background: rgba(74, 95, 193, 0.04);
-    border: 2px dashed var(--border-color);
-    border-radius: 8px;
+    padding: 0 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px dashed rgba(122,162,255,0.35);
+    border-radius: var(--radius-sm);
     transition: var(--transition);
-    /* Einheitliche Höhe passend zu Buttons */
-    height: 55px;
+    height: 56px;
 }
 
 .drop-zone.drag-over {
-    background: rgba(74, 95, 193, 0.12);
-    border-color: var(--primary-color);
+    background: var(--primary-soft);
+    border-color: var(--primary);
     border-style: solid;
+    box-shadow: var(--glow-primary);
 }
 
 .position-number {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    color: var(--primary-color);
-    min-width: 25px;
+    color: var(--primary);
+    min-width: 26px;
     font-family: 'Space Grotesk', sans-serif;
 }
 
 .drop-zone input[type="text"] {
     margin: 0;
     flex: 1;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(15, 20, 38, 0.55);
     cursor: default;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
+    height: 40px;
+    padding: 0 14px;
     font-size: 0.95rem;
     font-weight: 500;
 }
 
-/* Buttons */
-.text-box button[type="button"]:not(.joker-button):not(.planet-button) {
-    background: var(--primary-color);
-    border: none;
-    color: var(--text-light);
-    padding: 10px 20px;
-    margin: 6px 4px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    font-family: 'Inter', sans-serif;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.text-box button[type="button"]:not(.joker-button):not(.planet-button):hover {
-    background: var(--primary-dark);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Auswerte-Button innerhalb von .text-box */
-.text-box input[type="button"] {
-    background: var(--primary-color);
-    border: none;
-    color: var(--text-light);
-    padding: 14px 35px;
-    text-align: center;
-    display: inline-block;
-    font-size: 1.1rem;
-    font-weight: 600;
-    font-family: 'Inter', sans-serif;
-    margin: 15px auto;
-    transition: var(--transition);
-    cursor: pointer;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-}
-
-.text-box input[type="button"]:hover {
-    background: var(--primary-dark);
-    box-shadow: var(--shadow-hover);
-}
-
-/* Globaler Auswerte-Button (außerhalb von .text-box) */
+/* ===========================================================
+   Buttons
+   =========================================================== */
+.text-box button[type="button"]:not(.joker-button):not(.planet-button),
+.text-box input[type="button"],
 .action-button {
-    background: var(--primary-color);
-    border: none;
-    color: var(--text-light);
-    padding: 14px 35px;
+    background: linear-gradient(135deg, var(--primary-strong), var(--accent));
+    border: 1px solid rgba(255,255,255,0.16);
+    color: #fff;
+    padding: 14px 36px;
     text-align: center;
     display: inline-block;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
-    margin: 15px auto;
+    margin: 16px auto;
     transition: var(--transition);
     cursor: pointer;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 8px 22px rgba(91, 139, 255, 0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+    letter-spacing: 0.2px;
 }
 
+.text-box button[type="button"]:not(.joker-button):not(.planet-button):hover,
+.text-box input[type="button"]:hover,
 .action-button:hover {
-    background: var(--primary-dark);
-    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(91, 139, 255, 0.55), inset 0 1px 0 rgba(255,255,255,0.25);
+    filter: brightness(1.08);
 }
 
-/* Joker Button */
+.text-box button[type="button"]:not(.joker-button):not(.planet-button):active,
+.text-box input[type="button"]:active,
+.action-button:active { transform: translateY(0); }
+
+/* Auswerte-Button als Block – zentriert mit etwas Abstand */
+.action-button {
+    display: block;
+    width: max-content;
+    margin: 24px auto 8px;
+    padding: 16px 44px;
+    font-size: 1.1rem;
+}
+
+/* Joker */
 .joker-button {
-    background: var(--warning-color);
-    border: none;
-    color: var(--text-light);
-    padding: 10px 20px;
-    font-size: 0.95rem;
-    font-weight: 600;
+    background: linear-gradient(135deg, var(--warning), var(--warning-strong));
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #1a1300;
+    padding: 9px 18px;
+    font-size: 0.9rem;
+    font-weight: 700;
     font-family: 'Inter', sans-serif;
     border-radius: 8px;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 12px 0 8px 0;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.30), inset 0 1px 0 rgba(255,255,255,0.3);
+    margin: 14px 0 4px 0;
     display: inline-block;
+    letter-spacing: 0.2px;
 }
 
 .joker-button:hover {
-    background: #f57c00;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(251, 191, 36, 0.45), inset 0 1px 0 rgba(255,255,255,0.35);
+    filter: brightness(1.05);
 }
 
 button:disabled,
-.joker-button:disabled {
-    background: #9e9e9e;
+.joker-button:disabled,
+.planet-button:disabled {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: var(--text-muted) !important;
     cursor: not-allowed;
-    opacity: 0.6;
-    box-shadow: none;
+    opacity: 0.65;
+    box-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+    border-color: var(--glass-border) !important;
 }
 
-/* Antwort-Feedback */
+/* ===========================================================
+   Antwort-Feedback (Drag-&-Drop)
+   =========================================================== */
 .correct-answer {
-    background: var(--success-color) !important;
-    border-color: var(--success-color) !important;
-    color: white !important;
+    background: var(--success-soft) !important;
+    border-color: var(--success) !important;
+    color: var(--text) !important;
     font-weight: 600;
+    box-shadow: var(--glow-success);
 }
 
 .incorrect-answer {
-    background: var(--error-color) !important;
-    border-color: var(--error-color) !important;
-    color: white !important;
+    background: var(--error-soft) !important;
+    border-color: var(--error) !important;
+    color: var(--text) !important;
     font-weight: 600;
+    box-shadow: var(--glow-error);
 }
 
-/* Ergebnis-Anzeige */
+/* ===========================================================
+   Ergebnis-Anzeige (orange Akzente, kontrastieren mit blauem Hintergrund)
+   =========================================================== */
 #result,
 #antwort {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 600;
     font-family: 'Inter', sans-serif;
     text-align: center;
-    margin: 20px 0;
-    padding: 20px;
-    border-radius: var(--border-radius);
-    background: var(--primary-color);
-    color: var(--text-light);
-    box-shadow: var(--shadow);
+    margin: 22px 0;
+    padding: 22px 24px;
+    border-radius: var(--radius);
+    background:
+        linear-gradient(135deg, rgba(251, 146, 60, 0.30), rgba(245, 158, 11, 0.22)),
+        var(--glass-bg-strong);
+    color: var(--text);
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.45),
+        0 0 28px rgba(251, 146, 60, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(251, 146, 60, 0.45);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    line-height: 1.55;
+}
+
+/* Score-Sprüche als kleinerer, weicher Untertitel */
+#result .feedback {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #ffe9c8;
+    letter-spacing: 0.1px;
+}
+
+/* Glitch-Fix: leere Antwort-/Result-Boxen sollen unsichtbar sein */
+#result:empty,
+#antwort:empty {
+    display: none !important;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 #result a {
-    color: var(--accent-color);
+    color: #fff7e6;
     text-decoration: none;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 2px solid rgba(255, 247, 230, 0.55);
     transition: var(--transition);
     font-weight: 600;
 }
 
 #result a:hover {
-    color: var(--text-light);
-    border-bottom-color: var(--text-light);
+    color: #fff;
+    border-bottom-color: #fff;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px 15px;
+/* ===========================================================
+   Auswahlfarbe
+   =========================================================== */
+::selection {
+    background: var(--primary-soft);
+    color: var(--text);
+}
+
+/* ===========================================================
+   Reduced Motion
+   =========================================================== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
+}
+
+/* ===========================================================
+   Responsive
+   =========================================================== */
+@media (max-width: 768px) {
+    .container { padding: 24px 14px 40px; }
 
     .text-box {
-        padding: 20px;
-        margin-bottom: 20px;
+        padding: 22px 20px;
+        margin-bottom: 18px;
     }
 
-    .logo {
-        max-width: 140px;
-    }
+    .header-box { padding: 26px 22px; }
 
-    .text-box h1 {
-        font-size: 2rem;
-    }
+    .logo { max-width: 140px; }
 
-    .question h2 {
-        font-size: 1.1rem;
-    }
+    .text-box h1 { font-size: 2rem; }
+
+    .question h2 { font-size: 1.1rem; }
 
     .text-box input[type="button"],
     .action-button {
-        padding: 12px 28px;
+        padding: 13px 30px;
         font-size: 1rem;
     }
 
-    .planet-button {
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
+    /* Mobile: Hintergrund fixed kann auf iOS ruckeln – sanft auf scroll fallen lassen */
+    body { background-attachment: scroll; }
 }
 
 @media (max-width: 480px) {
@@ -511,9 +631,7 @@ button:disabled,
         margin-bottom: 12px;
     }
 
-    .text-box h1 {
-        font-size: 1.8rem;
-    }
+    .text-box h1 { font-size: 1.8rem; }
 
     .option {
         padding: 12px 14px;
@@ -521,18 +639,21 @@ button:disabled,
     }
 
     .planet-button {
+        width: auto;
+        min-width: 100px;
         padding: 8px 14px;
         font-size: 0.85rem;
-        margin: 4px;
+        margin: 2px;
     }
 
     .drop-zone {
         gap: 8px;
-        padding: 8px;
+        padding: 0 10px;
+        height: 52px;
     }
 
     .position-number {
-        font-size: 1rem;
-        min-width: 20px;
+        font-size: 0.95rem;
+        min-width: 22px;
     }
 }

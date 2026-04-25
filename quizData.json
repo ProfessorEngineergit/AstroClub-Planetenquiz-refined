@@ -93,18 +93,37 @@
     }
   ],
   "dragDrop": {
+    "afterQuestionIndex": 4,
     "title": {"de": "Sortiere die Planeten nach ihrer Entfernung zur Sonne.", "en": "Sort the planets by their distance from the Sun."},
     "instruction": {"de": "Ziehe die Planeten in die richtige Reihenfolge (von nah nach fern):", "en": "Drag the planets into the correct order (from nearest to farthest):"},
     "planets": {"de": ["Jupiter", "Neptun", "Uranus", "Saturn", "Merkur", "Mars", "Erde", "Venus"], "en": ["Earth", "Saturn", "Mercury", "Uranus", "Neptune", "Venus", "Mars", "Jupiter"]},
     "correctOrder": {"de": ["Merkur", "Venus", "Erde", "Mars", "Jupiter", "Saturn", "Uranus", "Neptun"], "en": ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]}
   },
+  "scoreFeedback": {
+    "de": [
+      {"min": 150, "text": "Astronom:in mit Diplom! Da kann selbst Galileo einpacken."},
+      {"min": 120, "text": "Sehr stark — du kennst dich im Sonnensystem aus wie zuhause."},
+      {"min": 90,  "text": "Solide! Du hast den Sternenhimmel im Blick."},
+      {"min": 60,  "text": "Halbmond-Wissen — gute Basis, da geht aber noch was."},
+      {"min": 30,  "text": "Gerade die ersten Krater erreicht — bleib dran, das wird!"},
+      {"min": 0,   "text": "Da geht noch was. Gib dem Universum eine zweite Chance!"}
+    ],
+    "en": [
+      {"min": 150, "text": "Astronaut-level! Galileo would tip his hat."},
+      {"min": 120, "text": "Excellent — you really know your way around the solar system."},
+      {"min": 90,  "text": "Solid! You've got the cosmos covered."},
+      {"min": 60,  "text": "Half-moon knowledge — a fine base to build on."},
+      {"min": 30,  "text": "Just past the first craters — keep at it, you'll get there!"},
+      {"min": 0,   "text": "Plenty to discover. Give the universe another shot!"}
+    ]
+  },
   "resultTexts": {
     "de": [
-      "Ergebnis: Du hast {score} von 160 Punkten erreicht. <a href=\"{restartUrl}\">Quiz neustarten.</a>",
+      "Ergebnis: Du hast {score} von 160 Punkten erreicht.<span class=\"feedback\">{feedback}</span><br><a href=\"{restartUrl}\">Quiz neustarten.</a>",
       "Hast du auch alle Fragen beantwortet?"
     ],
     "en": [
-      "Result: You scored {score} out of 160 points. <a href=\"{restartUrl}\">Restart quiz.</a>",
+      "Result: You scored {score} out of 160 points.<span class=\"feedback\">{feedback}</span><br><a href=\"{restartUrl}\">Restart quiz.</a>",
       "Did you answer all the questions?"
     ]
   }
