@@ -23,9 +23,13 @@
         <img src="AstroClub_logo.jpg" alt="AstroClub Logo" class="logo">
         <h1 id="titleText">Planeten-Quiz</h1>
     </div>
-    <form id="quizForm">
+    <form id="quizForm" onsubmit="event.preventDefault(); checkAnswers(); return false;">
         <div id="quizContent"></div>
         <div id="dragDropContent"></div>
+        <div id="namePrompt" class="text-box name-prompt">
+            <label for="playerName" id="namePromptLabel">Name für das Leaderboard</label>
+            <input type="text" id="playerName" name="playerName" maxlength="30" placeholder="Dein Name" autocomplete="off" required>
+        </div>
     <input type="button" id="evaluateBtn" class="action-button" value="Quiz auswerten" onclick="checkAnswers()">
     </form>
     <div id="result"></div>
