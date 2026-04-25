@@ -153,7 +153,7 @@ function renderQuiz() {
         const questionHeader = `
             <div class="question-header">
                 <h2>${escapeHtml(q.question[currentLang])}</h2>
-                ${infoText ? `<button type="button" class="info-button" aria-expanded="false" aria-controls="${infoBoxId}" data-info-target="${infoBoxId}" title="${escapeHtml(infoLabel)}"><span aria-hidden="true">i</span><span class="visually-hidden">${escapeHtml(infoLabel)}</span></button>` : ''}
+                ${infoText ? `<button type="button" class="info-button" aria-expanded="false" aria-controls="${infoBoxId}" data-info-target="${infoBoxId}" title="${escapeHtml(infoLabel)}"><span aria-hidden="true">Info</span><span class="visually-hidden">${escapeHtml(infoLabel)}</span></button>` : ''}
             </div>
             ${infoText ? `<div class="info-box" id="${infoBoxId}" role="region" aria-label="${escapeHtml(infoLabel)}" hidden>${escapeHtml(infoText)}</div>` : ''}
         `;

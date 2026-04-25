@@ -839,15 +839,16 @@ button:disabled,
 
 .info-button {
     flex-shrink: 0;
-    width: 30px;
     height: 30px;
-    border-radius: 50%;
+    padding: 0 12px;
+    border-radius: 999px;
     border: 1px solid var(--border-strong);
     background: var(--surface-strong);
     color: var(--primary);
     font-family: var(--heading-font);
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
     line-height: 1;
     cursor: pointer;
     transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
