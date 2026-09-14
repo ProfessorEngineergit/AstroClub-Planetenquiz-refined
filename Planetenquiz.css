@@ -645,7 +645,10 @@ button:disabled,
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
-    font-weight: 800;
+    /* font/cursor explizit, damit <button> und <a> identisch aussehen:
+       der Offline-Build rendert das Leaderboard als Button statt als Link. */
+    font: 800 1rem var(--body-font);
+    cursor: pointer;
     text-decoration: none;
     transition: border-color var(--transition), background var(--transition), color var(--transition);
 }

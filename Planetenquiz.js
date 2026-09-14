@@ -31,6 +31,7 @@ const uiCopy = {
         scoreNotReady: 'Firebase ist noch nicht verbunden. Trage zuerst die Konfiguration ein.',
         scoreFailed: 'Konnte nicht gespeichert werden. Prüfe Firebase-Konfiguration und Regeln.',
         scoreNameRequired: 'Bitte gib einen Namen ein.',
+        scoreStorageFailed: 'Der Browser erlaubt kein lokales Speichern (privater Modus?).',
         nameLabel: 'Name',
         restartQuiz: 'Quiz neu starten',
         openScoreboard: 'Leaderboard öffnen',
@@ -57,6 +58,7 @@ const uiCopy = {
         scoreNotReady: 'Firebase is not connected yet. Add the configuration first.',
         scoreFailed: 'Could not save. Check Firebase configuration and rules.',
         scoreNameRequired: 'Please enter a name.',
+        scoreStorageFailed: 'This browser blocks local storage (private mode?).',
         nameLabel: 'Name',
         restartQuiz: 'Restart quiz',
         openScoreboard: 'Open leaderboard',
@@ -113,15 +115,28 @@ document.addEventListener('DOMContentLoaded', function() {
         sel.addEventListener('change', (e) => setLang(e.target.value));
     }
 
-    fetch('quizData.json')
-        .then(response => response.json())
+    loadQuizData()
         .then(data => {
             quizData = data;
             applyLanguageToStaticUI();
             renderQuiz();
             initDragAndDrop();
+        })
+        .catch(error => {
+            console.error('Quizdaten konnten nicht geladen werden.', error);
+            setPanelHtml('result', '<section class="result-card"><p class="feedback">Quizdaten konnten nicht geladen werden.</p></section>');
         });
 });
+
+// Der Offline-Build bettet die Quizdaten direkt in die Seite ein, weil fetch()
+// unter file:// blockiert wird. Online bleibt der Weg ueber quizData.json.
+function loadQuizData() {
+    const inline = document.getElementById('quizData');
+    if (inline && inline.textContent.trim()) {
+        return Promise.resolve(JSON.parse(inline.textContent));
+    }
+    return fetch('quizData.json').then(response => response.json());
+}
 
 function renderQuiz() {
     const quizContent = document.getElementById('quizContent');
@@ -455,9 +470,15 @@ async function autoSubmitScore(score, name) {
         status.classList.add('is-saved');
     } catch (error) {
         console.error(error);
-        status.textContent = error?.message === 'firebase-not-configured'
-            ? copy('scoreNotReady')
-            : copy('scoreFailed');
+        status.textContent = errorCopyKey(error);
+    }
+}
+
+function errorCopyKey(error) {
+    switch (error?.message) {
+        case 'firebase-not-configured': return copy('scoreNotReady');
+        case 'storage-unavailable': return copy('scoreStorageFailed');
+        default: return copy('scoreFailed');
     }
 }
 
@@ -616,12 +637,27 @@ function renderResult(score, feedback, playerName) {
             <p id="scoreSubmitStatus" class="score-submit-status" aria-live="polite"></p>
             <div class="result-actions">
                 <a class="result-link" href="${escapeHtml(getRestartUrl())}">${escapeHtml(copy('restartQuiz'))}</a>
-                <a class="result-link" href="${escapeHtml(getScoreboardUrl())}">${escapeHtml(copy('openScoreboard'))}</a>
+                ${renderScoreboardAction()}
             </div>
         </section>
     `;
 
+    const boardButton = document.getElementById('openLeaderboardBtn');
+    if (boardButton) {
+        boardButton.addEventListener('click', () => window.planetenquizScoreboard.openLeaderboard());
+    }
+
     result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// Offline gibt es keine zweite Seite: der lokale Score-Client bringt sein
+// eigenes Leaderboard mit und wird per Button geoeffnet statt verlinkt.
+function renderScoreboardAction() {
+    const label = escapeHtml(copy('openScoreboard'));
+    if (typeof window.planetenquizScoreboard?.openLeaderboard === 'function') {
+        return `<button type="button" class="result-link" id="openLeaderboardBtn">${label}</button>`;
+    }
+    return `<a class="result-link" href="${escapeHtml(getScoreboardUrl())}">${label}</a>`;
 }
 
 function pickFeedback(score) {
