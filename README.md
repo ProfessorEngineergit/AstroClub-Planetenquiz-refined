@@ -142,3 +142,7 @@ beschrieben.
 
 Fragen und Texte werden ausschließlich in `quizData.json` gepflegt — für neue Fragen
 muss kein JavaScript angefasst werden.
+
+## Development and AI assistance
+
+The default-branch history includes contributions explicitly attributed to Claude ([example](https://github.com/ProfessorEngineergit/AstroClub-Planetenquiz-refined/commit/113878509bd58e32a6c60d4ad9b16613c509d56a)). This documents AI involvement in those contributions; it does not establish the origin of every line or independent validation. Existing author, co-author and session records are retained.
