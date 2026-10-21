@@ -33,7 +33,7 @@ Das Quiz läuft in zwei Varianten:
 2. Doppelklick. Sie öffnet sich im Standardbrowser (Edge, Chrome, Firefox).
 
 Keine Installation, keine Administratorrechte, kein Internet. Die Datei ist in sich
-abgeschlossen — sie darf umbenannt und beliebig kopiert werden.
+abgeschlossen - sie darf umbenannt und beliebig kopiert werden.
 
 ### Was offline anders ist
 
@@ -61,7 +61,7 @@ Nach jeder Änderung an den Quelldateien:
 node build-offline.js
 ```
 
-Ergebnis: `dist/Planetenquiz-Offline.html`. Benötigt wird nur Node.js — keine
+Ergebnis: `dist/Planetenquiz-Offline.html`. Benötigt wird nur Node.js - keine
 Abhängigkeiten, kein `npm install`.
 
 Das Skript löst die drei Dinge auf, die einen Doppelklick auf `index.html` sonst
@@ -94,7 +94,7 @@ bettet alles aus `fonts/` automatisch als `@font-face` ein und meldet es im Prot
 
 > **Lizenzen prüfen.** Inter und Space Grotesk stehen unter der SIL Open Font License
 > und dürfen eingebettet und weitergegeben werden. **Nasalization ist kommerziell
-> lizenziert** (Typodermic) — das Einbetten in eine weitergegebene Datei gilt als
+> lizenziert** (Typodermic) - das Einbetten in eine weitergegebene Datei gilt als
 > Weiterverbreitung und muss von der eigenen Lizenz gedeckt sein.
 
 ### Release anlegen
@@ -116,7 +116,7 @@ aktuell und muss nie angepasst werden.
 python3 -m http.server 8080
 ```
 
-Dann `http://localhost:8080` öffnen. Ein Server ist nötig — direktes Öffnen von
+Dann `http://localhost:8080` öffnen. Ein Server ist nötig - direktes Öffnen von
 `index.html` funktioniert aus den oben genannten Gründen nicht.
 
 Für das Firestore-Leaderboard `firebase-config.example.js` nach `firebase-config.js`
@@ -140,9 +140,9 @@ beschrieben.
 | `build-offline.js` | Erzeugt `dist/Planetenquiz-Offline.html` |
 | `firestore.rules` | Validierungsregeln für die Score-Sammlung |
 
-Fragen und Texte werden ausschließlich in `quizData.json` gepflegt — für neue Fragen
+Fragen und Texte werden ausschließlich in `quizData.json` gepflegt - für neue Fragen
 muss kein JavaScript angefasst werden.
 
-## Development and AI assistance
+## KI-Beteiligung
 
-The default-branch history includes contributions explicitly attributed to Claude ([example](https://github.com/ProfessorEngineergit/AstroClub-Planetenquiz-refined/commit/113878509bd58e32a6c60d4ad9b16613c509d56a)). This documents AI involvement in those contributions; it does not establish the origin of every line or independent validation. Existing author, co-author and session records are retained.
+Einzelne Code-Beiträge sind ausdrücklich KI-Tools zugeschrieben: [generated with Claude Code](https://github.com/ProfessorEngineergit/AstroClub-Planetenquiz-refined/commit/295602b9abdbb8e27dd2a80932e8e1e97647d3b2). Das gilt für diese Beiträge, nicht pauschal für alle Dateien.
